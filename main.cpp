@@ -24,6 +24,9 @@ int main(int argc, char **argv) {
         v[i] = x;
     }
 
+    double start_t, end_t;
+    start_t = realtime();
+
     MPI_Init(NULL, NULL);   // Initialize the MPI environment
     MPI_Comm_size(MPI_COMM_WORLD, &size);   // Get the number of processes
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);   // Get the rank of the process
@@ -87,6 +90,8 @@ int main(int argc, char **argv) {
             length += step;
         }
 
+        end_t = realtime();
+
         print_line(2, LINE_LENGTH, 1);
 
         print_master();
@@ -95,6 +100,9 @@ int main(int argc, char **argv) {
 
         for (int i = 0; i < length; i++)
             fout << sorted[i] << " ";
+
+        print_master();
+        printf("\t*total time*\t%.3lfs\n", end_t - start_t);
     } else {
         a = merge_sort(a, 0, step - 1);
         cout << "$ proc" << rank << ":\t*send*\t\t";

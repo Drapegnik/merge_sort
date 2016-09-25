@@ -4,6 +4,7 @@
 
 
 #include <cstdio>
+#include <ctime>
 
 void print(int *data, int length, bool isEndl) {
     printf("[");
@@ -29,4 +30,8 @@ void print_line(int before, int length, int after) {
 
 void print_master() {
     printf("$\033[1;31m master\033[0m:");
+}
+
+double realtime() {
+    return double(clock()) / CLOCKS_PER_SEC;
 }
