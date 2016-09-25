@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
             MPI_Send(v + start, step, MPI_INT, i, 77, MPI_COMM_WORLD);
             start += step;
         }
-    } else {
+    } else if (step != 0) {
         a = new int[step];
         MPI_Recv(a, step, MPI_INT, ROOT, 77, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
@@ -104,9 +104,11 @@ int main(int argc, char **argv) {
         print_master();
         printf("\t*total time*\t%.3lfs\n", end_t - start_t);
     } else {
-        a = merge_sort(a, 0, step - 1);
-        cout << "$ proc" << rank << ":\t*send*\t\t";
-        print(a, step, true);
+        if (step != 0) {
+            a = merge_sort(a, 0, step - 1);
+            cout << "$ proc" << rank << ":\t*send*\t\t";
+            print(a, step, true);
+        }
         MPI_Send(a, step, MPI_INT, ROOT, 77, MPI_COMM_WORLD);
     }
 
