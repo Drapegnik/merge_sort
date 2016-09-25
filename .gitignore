@@ -1,3 +1,5 @@
 .idea/
 out/
 /merge_sort
+input.txt
+output.txt
