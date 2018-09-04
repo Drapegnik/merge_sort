@@ -4,8 +4,8 @@ Multithread merge sort on C++
 
 **requirements**:
 
-* [mpi](https://www.open-mpi.org/)
-* [python](https://www.python.org/)
+- [mpi](https://www.open-mpi.org/)
+- [python](https://www.python.org/)
 
 **run**:
 
